@@ -1,8 +1,10 @@
 <template>
-  <div class="songs_wrap text-center">
-      <div class="row gx-0">
-          <div v-for="(element,index) in songList" :key="index" class="col">
-             <Song :canzone="element"/>
+  <div class="songs_wrap text-center d-flex justify-content-center align-items-center">
+      <div class="row row-cols-5 g-0 justify-content-center">
+          <div v-for="(element,index) in songList" :key="index" class="col g-3">
+             
+            <Song :canzone="element"/>
+             
           </div>
 
       </div>
@@ -44,5 +46,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+    .songs_wrap{
+        height: calc(100vh - 70px);
+    }
 </style>
