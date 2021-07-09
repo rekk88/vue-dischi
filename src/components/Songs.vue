@@ -39,6 +39,8 @@ export default {
                     console.log(risp.data);
                     this.songList = risp.data.response;
                     console.log(this.songList.response);
+                    //$emit lancia un evento sul bus "songs" e passa come
+                    //parametro this.songlist
                     eventBus.$emit('songs',this.songList)
                 })
             // eventBus.$on('songsMessage',(message) =>{
