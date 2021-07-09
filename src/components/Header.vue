@@ -1,15 +1,19 @@
 <template>
-  <div class="header_wrap">
+  <div class="header_wrap d-flex align-items-center justify-content-between">
       <div class="logo">
           <img class="p-2" src="../assets/images/logo.png" alt="spotify logo">
       </div>
-
+      <Select />
+      
   </div>
 </template>
-
 <script>
+import Select from './Select.vue'
 export default {
     name:"Header",
+    components:{
+        Select,
+    }
 }
 </script>
 
