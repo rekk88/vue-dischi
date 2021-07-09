@@ -7,9 +7,15 @@
 </template>
 
 <script>
+import {eventBus} from '../main.js'
+
 export default {
     name:"Song",
-    props:["canzone"]
+    props:["canzone"],
+    created(){
+        eventBus.$emit('songsMessage','Ciao sono Song.vue')
+
+    }
 }
 </script>
 

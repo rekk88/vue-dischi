@@ -14,7 +14,7 @@
 <script>
 import axios from 'axios'
 import Song from './Song'
-
+import {eventBus} from '../main.js'
 export default {
     name:"Songs",
     components:{
@@ -40,7 +40,11 @@ export default {
                     this.songList = risp.data.response;
                     console.log(this.songList.response);
                 })
-        }
+            eventBus.$on('songsMessage',(message) =>{
+                console.log(message);
+            })
+
+        },
     }
 }
 </script>
