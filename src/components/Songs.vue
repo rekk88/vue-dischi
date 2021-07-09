@@ -39,12 +39,14 @@ export default {
                     console.log(risp.data);
                     this.songList = risp.data.response;
                     console.log(this.songList.response);
+                    eventBus.$emit('songs',this.songList)
                 })
-            eventBus.$on('songsMessage',(message) =>{
-                console.log(message);
-            })
+            // eventBus.$on('songsMessage',(message) =>{
+            //     console.log(message);
+            // })
 
         },
+   
     }
 }
 </script>
