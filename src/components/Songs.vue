@@ -3,7 +3,7 @@
       <div class="row row-cols-5 g-0 justify-content-center">
           <div v-for="(element,index) in songList" :key="index" class="col g-3">
              
-            <Song :canzone="element"/>
+            <Song v-if="(selectedGenre == element.genre) || (selectedGenre == 'all')" :canzone="element"/>
              
           </div>
 
@@ -24,6 +24,8 @@ export default {
         return {
             apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
             songList : " ", //array da caricato dalla API
+            genreList : ["all"],
+            selectedGenre: "all",
         }
     },
     created(){
@@ -38,15 +40,38 @@ export default {
                 .then(risp => {
                     console.log(risp.data);
                     this.songList = risp.data.response;
-                    console.log(this.songList.response);
                     //$emit lancia un evento sul bus "songs" e passa come
                     //parametro this.songlist
-                    eventBus.$emit('songs',this.songList)
+                    console.log(this.songList);
+                    // this.genreList = this.songList.filter(element =>{
+                    //     console.log(element.genre);
+                    //     console.log(this.genreList);
+                    //     return !(this.genreList.includes(element.genre));
+
+                        // if(!this.genreList.includes(element.genre)){
+                        //     return true;
+                        // }
+                        // else{
+                        //     return false
+                        // }
+                    // })
+                    //questo funziona ma c'è da capire perchè con filter non va
+                    for(let i=0; i < this.songList.length ; i++){
+                        if(!this.genreList.includes(this.songList[i].genre)){
+                            this.genreList.push(this.songList[i].genre)
+                        }
+                    }
+                    eventBus.$emit('songs',{a : this.songList,b : this.genreList})
                 })
+            
             // eventBus.$on('songsMessage',(message) =>{
             //     console.log(message);
             // })
-
+            eventBus.$on('filtro', element =>{
+                console.log(element);
+                this.selectedGenre = element;
+        
+            })
         },
    
     }
