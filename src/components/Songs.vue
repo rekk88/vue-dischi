@@ -4,7 +4,7 @@
           <div v-for="(element,index) in songList" :key="index" class="col g-3">
              
             <Song v-if="(selectedGenre == element.genre) || (selectedGenre == 'all')" :canzone="element"/>
-             
+             <div v-else class="offset col-5"></div>
           </div>
 
       </div>
@@ -24,6 +24,7 @@ export default {
         return {
             apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
             songList : " ", //array da caricato dalla API
+            filteredSongList:[],
             genreList : ["all"],
             selectedGenre: "all",
         }
