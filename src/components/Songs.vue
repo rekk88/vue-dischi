@@ -43,25 +43,20 @@ export default {
                     this.songList = risp.data.response;
                     //$emit lancia un evento sul bus "songs" e passa come
                     //parametro this.songlist
-                    console.log(this.songList);
-                    // this.genreList = this.songList.filter(element =>{
-                    //     console.log(element.genre);
-                    //     console.log(this.genreList);
-                    //     return !(this.genreList.includes(element.genre));
 
-                        // if(!this.genreList.includes(element.genre)){
-                        //     return true;
-                        // }
-                        // else{
-                        //     return false
-                        // }
-                    // })
                     //questo funziona ma c'è da capire perchè con filter non va
-                    for(let i=0; i < this.songList.length ; i++){
-                        if(!this.genreList.includes(this.songList[i].genre)){
-                            this.genreList.push(this.songList[i].genre)
+                    // for(let i=0; i < this.songList.length ; i++){
+                    //     if(!this.genreList.includes(this.songList[i].genre)){
+                    //         this.genreList.push(this.songList[i].genre)
+                    //     }
+                    // }
+                    this.songList.forEach(element => {
+                        if(!this.genreList.includes(element.genre)){
+                             console.log("element : " , element.genre);
+                             this.genreList.push(element.genre)
                         }
-                    }
+                    });
+                    console.log("genere  : ",this.genreList);
                     eventBus.$emit('songs',{a : this.songList,b : this.genreList})
                 })
             
